@@ -44,6 +44,27 @@
       [class*="is-selected"] {
         background-color: #8e44ad !important; /* Seçili öğeler: Mor */
       }
+
+      /* Yeni Butonun Stili (Feedback butonuna benzemesi için) */
+      .scaty-back-button {
+        background: #8e44ad;
+        color: white;
+        border: none;
+        padding: 0 1rem;
+        height: 2.25rem;
+        border-radius: 0.5rem;
+        font-family: inherit;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin-left: 0.5rem;
+        text-decoration: none;
+        font-size: 0.85rem;
+      }
+      .scaty-back-button:hover {
+        background: #9b59b6;
+      }
     </style>
     <link rel="dns-prefetch" href="https://trampoline.turbowarp.org/">
     <link rel="dns-prefetch" href="https://projects.scratch.mit.edu/">
@@ -65,6 +86,18 @@
         try {var localTheme = localStorage.getItem('tw:theme');} catch (e) {}
         if (localTheme ? localTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches) document.querySelector('#splash').setAttribute('splash-theme', 'dark');
         
+        // Menü barı yüklendiğinde butonu oraya ekleyen script
+        const interval = setInterval(() => {
+          const menuBar = document.querySelector('[class*="menu-bar_main-menu"]');
+          if (menuBar && !document.querySelector('.scaty-back-button')) {
+            const btn = document.createElement('a');
+            btn.className = 'scaty-back-button';
+            btn.href = 'https://scaty-web.github.io';
+            btn.innerText = 'Back to Scaty';
+            // Feedback butonunun yanına ekler
+            menuBar.appendChild(btn);
+          }
+        }, 1000);
       })();
     </script>
     <div id="app"></div>
